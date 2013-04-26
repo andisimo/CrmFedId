@@ -1,0 +1,19 @@
+﻿body
+{
+    font-family: 'Segoe UI';
+    color: black;
+}
+
+#IdentityProvidersListView .win-container:hover
+{
+    outline: gray solid 1px;
+}
+
+/*# error message */
+#LblErrorMessage
+{
+    margin: 10px;
+    font-family: "Segoe UI Web Semibold", "Segoe UI Web Regular", "Segoe UI", "Helvetica Neue", Arial;
+    color: red;
+    display: none;
+}

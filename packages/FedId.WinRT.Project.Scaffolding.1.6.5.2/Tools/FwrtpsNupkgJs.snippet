@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId Settings Flyout</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdSettingsFlyout</Shortcut>
+    <Description>inserts windows runtime federated identity settings flyout snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[var FedId = Microsoft.IT.Core.Security.FedId.instance; var FlyoutAction = Microsoft.IT.Core.Security.FlyoutAction;
+    FedId.onshowsettingsflyout = function (e) {
+        if (e.flyoutAction == FlyoutAction.getIdpCredentials) {
+            WinJS.UI.SettingsFlyout.showSettings("idpCredentialsFlyout", "/security/idpCredentialsFlyout.html");
+            WinJS.log & WinJS.log("idp credentials flyout being displayed", "myapp", "info");
+        } else if (e.flyoutAction == FlyoutAction.getIdpSelection) {
+            WinJS.UI.SettingsFlyout.showSettings("idpSelectionFlyout", "/security/idpSelectionFlyout.html");
+            WinJS.log & WinJS.log("idp selection flyout being displayed", "myapp", "info");
+        }
+    };]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId SignIn</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdSignIn</Shortcut>
+    <Description>inserts windows runtime federated identity signin snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[var FedId = Microsoft.IT.Core.Security.FedId.instance;
+            if (!FedId.isSecurityTokenValid()) {
+                FedId.signInAsync("<wsfed acs or wsfed signin params>").then(
+                    function (result) { if (result == true) { /* signin succeeded */ } else { /* signin was cancelled by user or failed */ } }, 
+                    function (error) { if (error != null) var message = error.message; }); 
+            } ]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId SignOut</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdSignOut</Shortcut>
+    <Description>inserts windows runtime federated identity signout snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[var FedId = Microsoft.IT.Core.Security.FedId.instance;
+            if (FedId.isSecurityTokenValid()) {
+                FedId.signOutAsync().then(
+                    function (result) { if (result == true) { /* signout succeeded */ } else { /* signout was cancelled by user or failed */ } },
+                    function (error) { if (error != null) var message = error.message; });
+            } ]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId SignIn All Examples</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdSignInAllExamples</Shortcut>
+    <Description>inserts windows runtime federated identity signin snippet containing all examples</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[var FedId = Microsoft.IT.Core.Security.FedId.instance;
+            if (!FedId.isSecurityTokenValid()) {
+// wsfed acsb signin that stores swt result in .RawToken
+FedId.signInAsync("https://mynamespace.accesscontrol.windows.net/v2/metadata/IdentityProviders.js?protocol=wsfederation&realm=https://myapp.cloudapp.net/&reply_to=https://myapp.cloudapp.net/&version=1.0")
+//FedId.signInAsync("https://mynamespace.accesscontrol.windows.net/v2/metadata/IdentityProviders.js?protocol=wsfederation&realm=https://myonpremiseserviceaddress/&reply_to=https://mywabssobouncer.cloudapp.net/&version=1.0")
+//FedId.signInAsync("https://myapp.microsoft.com/adfs/ls/?wa=wsignin1.0&wtrealm=https://myapp.cloudapp.net/").then(
+                function (result) { if (result == true) { /* signin succeeded */ } else { /* signin was cancelled by user or failed */ } }, 
+                function (error) { if (error != null) var message = error.message; });
+            }
+            if (!FedId.isSecurityTokenRawTokenSbValid()) {
+// wsfed acs-sb signin that stores swt result in .RawTokenSb
+FedId.signInAsync("https://mynamespace-sb.accesscontrol.windows.net/v2/metadata/IdentityProviders.js?protocol=wsfederation&realm=http://mynamespace.servicebus.windows.net/&reply_to=https://mywabssobouncer.cloudapp.net/&version=1.0").then(
+                function (result) { if (result == true) { /* signin succeeded */ } else { /* signin was cancelled by user or failed */ } },
+                function (error) { if (error != null) var message = error.message; });
+            } ]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
+<!--<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId SignIn All Overload Examples</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdSignInAllOverloadExamples</Shortcut>
+    <Description>inserts windows runtime federated identity signin snippet containing all overload examples</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[if (!FedId.Instance.IsSecurityTokenValid())
+            {
+//TimeSpan wsFedSessionTokenExpirationShrink = new TimeSpan(0, 0, 5);  // 5 seconds, default uses bootstrap token expiration
+//FedId.Instance.SignIn("https://myapp.cloudapp.net/", wsFedSessionTokenExpirationShrink);  // wsfed signin to acquire saml or swt token for use calling wsfed secured azure web role content and service endpoints
+
+//TimeSpan wsFedSessionTokenExpirationExpand = new TimeSpan(14, 0, 0, 0);  // 14 days, default uses bootstrap token expiration
+//FedId.Instance.SignIn("https://myapp.cloudapp.net/", wsFedSessionTokenExpirationExpand);  // wsfed signin to acquire saml or swt token for use calling wsfed secured azure web role content and service endpoints
+   
+// for adfs wstrust enabled endpoints see https://<adfsfarm>/adfs/services/trust/mex
+// for acs wstrust enabled endpoints see https://<namespace>[-sb].accesscontrol.windows.net/v2/wstrust/mex
+            }
+            else 
+            {
+FedId.Instance.SignOut(<replying party custom signout param>);
+            } ]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>-->
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT View Model Singleton</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdViewModel</Shortcut>
+    <Description>inserts windows runtime view model singleton snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[var viewModel = (function () {
+    var object = {
+        initialized: true,
+        view: null,
+        setCurrentView: function (view) {
+            this.view = view;
+        },
+        initCurrentView: function () {
+            // TODO: initialize current view
+        }
+    }
+    return object;
+})(); ]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>    
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId Name Claim Access</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdNameClaimAccess</Shortcut>
+    <Description>inserts windows runtime federated identity name claim access snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[// requires addition of linq.js nuget package and <script src="/scripts/linq.js"></script> to parent html page [ given WinJS.Binding.List doesn't cover this ] and
+// var ClaimTypes = Microsoft.IdentityModel.Claims.ClaimTypes; var ClaimTypesEx = Microsoft.IdentityModel.Claims.ClaimTypesEx; var ClaimCollection = Microsoft.IdentityModel.Claims.ClaimCollection;
+var claimsArray = FedId.securityToken.claims.getView();
+var nameClaim = Enumerable.From(claimsArray).Where(function (c) { return c.claimType == ClaimTypes.name }).Any() ?
+    Enumerable.From(claimsArray).Where(function (c) { return c.claimType == ClaimTypes.name })
+    .Select(function (c) { return c.value }).First() : ""; ]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId Role Claims Access</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdRoleClaimsAccess</Shortcut>
+    <Description>inserts windows runtime federated identity role claims access snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[// requires addition of linq.js nuget package and <script src="/scripts/linq.js"></script> to parent html page [ given WinJS.Binding.List doesn't cover this ] and
+// var ClaimTypes = Microsoft.IdentityModel.Claims.ClaimTypes; var ClaimTypesEx = Microsoft.IdentityModel.Claims.ClaimTypesEx; var ClaimCollection = Microsoft.IdentityModel.Claims.ClaimCollection;
+var claimsArray = FedId.securityToken.claims.getView();
+var isInMemberRole = Enumerable.From(claimsArray).Where(function (c) { return c.claimType == ClaimTypes.role && c.Value == "My Members Role" }).Any();
+var roleClaims = Enumerable.From(claimsArray).Where(function (c) { return c.claimType == ClaimTypes.role }).Select(function (c) { return c.value }).ToArray();
+var roleClaimsCount = roleClaims.length; ]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>  
+<!--<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId Session CookieHeader Attach</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdSessionCookieHeaderAttach</Shortcut>
+    <Description>inserts windows runtime federated identity session cookie header attach snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[webClient.Headers[HttpRequestHeader.Cookie] = FedId.Instance.SecurityToken.SessionCookieHeader;]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>-->
+<!--<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId Session CookieContainer Attach</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdSessionCookieContainerAttach</Shortcut>
+    <Description>inserts windows runtime federated identity session cookie container attach snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[WebClientEx webClient = new WebClientEx();  // using nuget package provided WebClientEx() implementation in order to have access to underlying HttpWebRequest.CookieContainer
+webClient.CookieContainer = FedId.Instance.SecurityToken.GetSessionCookieContainer(new Uri("https://mycompany.sharepoint.com/"));]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>-->
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId Authorization Header Attach</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdAuthorizationHeaderAttach</Shortcut>
+    <Description>inserts windows runtime federated identity authorization header attach snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[var authorizationHeaderValue = "OAuth " + FedId.securityToken.rawToken;
+    WinJS.xhr({ type: "GET", url: serviceUrl, headers: { "Authorization": authorizationHeaderValue } /*, data: JSON.stringify(someinput) */ })]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId ServiceBusAuthorization Header Attach</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdServiceBusAuthorizationHeaderAttach</Shortcut>
+    <Description>inserts windows runtime federated identity servicebus authorization header attach snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[var authorizationHeaderValue = "OAuth " + FedId.securityToken.rawToken;
+    var serviceBusAuthorizationHeaderValue = "WRAP access_token=\"" + FedId.securityToken.rawTokenSb + "\"";
+    //var serviceBusAuthorizationHeaderValue = "OAuth " + FedId.securityToken.rawTokenSb;
+    WinJS.xhr({ type: "GET", url: serviceUrl, headers: { "Authorization": authorizationHeaderValue, "ServiceBusAuthorization": serviceBusAuthorizationHeaderValue } /*, data: JSON.stringify(someinput) */ })]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
+<!--<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId Soap Authorization Header Attach</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdSoapAuthorizationHeaderAttach</Shortcut>
+    <Description>inserts windows runtime federated identity soap authorization header attach snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[using (new OperationContextScope(soapClient.InnerChannel))
+{
+    HttpRequestMessageProperty request = OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] as HttpRequestMessageProperty;
+    request.Headers[HttpRequestHeader.Authorization] = string.Format("OAuth {0}", FedId.Instance.SecurityToken.RawToken);
+    
+    // ... now complete soapClient service endpoint request code implementation here
+}]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>-->
+<!--<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId Soap ServiceBusAuthorization Header Attach</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdSoapServiceBusAuthorizationHeaderAttach</Shortcut>
+    <Description>inserts windows runtime federated identity soap servicebus authorization header attach snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[using (new OperationContextScope(soapClient.InnerChannel))
+{
+    OperationContext.Current.OutgoingMessageHeaders.Add(new ServiceBusAuthorizationSoapHeader(FedId.Instance.SecurityToken.RawTokenSb));
+    
+    // ... now complete soapClient service endpoint request code implementation here
+}]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>-->
+<!--<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT FedId Soap WsTrust Secured Call</Title>
+    <Author>author</Author>
+    <Shortcut>wrtFedIdSoapWsTrustSecuredCall</Shortcut>
+    <Description>inserts windows runtime federated identity soap wstrust secured call snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[SecureServiceHelper.MakeSecureServiceCall(() => { soapClient.GetDataAsync(operationParam1value); },
+    FedId.Instance.SecurityToken.Rstr, soapClient.InnerChannel);]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT Diagnostics Log Information</Title>
+    <Author>author</Author>
+    <Shortcut>wrtDiagLogInformation</Shortcut>
+    <Description>inserts windows runtime diagnostics log exception snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[Log.Instance.TraceInformation("some variable currently = {0}", someVariable);]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>-->
+<!--<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT Diagnostics Log Exception</Title>
+    <Author>author</Author>
+    <Shortcut>wrtDiagLogException</Shortcut>
+    <Description>inserts windows runtime diagnostics log exception snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[Log.Instance.TraceException(e.ExceptionObject, "An Application_UnhandledException event occurred.");]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>-->
+<!--<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>WinRT Diagnostics Log Check</Title>
+    <Author>author</Author>
+    <Shortcut>wrtDiagLogCheck</Shortcut>
+    <Description>inserts windows runtime diagnostics log check snippet</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+<![CDATA[if (Log.Instance.CheckForLogFileAndAskUserToForward("myAppSupport@company.com", "an unhandled exception was found and forwarded by user"))
+            {
+                // TODO: any additional logic if previous unhandled exception details were found and forwarded via email 
+            }]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>-->
+</CodeSnippets>

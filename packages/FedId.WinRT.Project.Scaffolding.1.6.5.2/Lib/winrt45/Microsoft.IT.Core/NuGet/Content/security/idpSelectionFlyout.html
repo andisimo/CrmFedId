@@ -1,0 +1,51 @@
+﻿<!doctype HTML>
+<html>
+<head>
+    <title>identity provider selection</title>
+    <link href="/Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet">
+    <script src="/Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="/Microsoft.WinJS.1.0/js/ui.js"></script>
+    <link href="./idpSelectionFlyout.css" rel="stylesheet" />
+    <script src="./idpSelectionFlyout.js"></script>
+</head>
+<body>
+    <!-- BEGINSETTINGSFLYOUT -->
+    <div id="settingsFlyoutDiv" data-win-control="WinJS.UI.SettingsFlyout" aria-label="identity provider selection"
+        data-win-options="{ settingsCommandId:'idpSelectionFlyout', width:'wide' }">
+        <!-- Use either 'win-ui-light' or 'win-ui-dark' depending on the contrast between the header title and background color -->
+        <div class="win-ui-dark win-header">
+            <button type="button" onclick="WinJS.UI.SettingsFlyout.show()" class="win-backbutton"></button>
+            <div class="win-label">identity provider selection</div>
+            <img src="../images/smalltile-sdk.png" style="position: absolute; right: 40px;" />
+        </div>
+        <div class="win-content">
+            <progress id="LoadingProgressBar" style="visibility: hidden; width: 500px"></progress>
+            <div id="IdentityProviders">
+                <p>Select the Identity Provider that you would like to signin with.</p>
+                <div id="mediumListIconTextTemplate" data-win-control="WinJS.Binding.Template">
+                    <div style="width: 300px; height: 30px;">
+                        <!-- Displays the "name" field. -->
+                        <h3 data-win-bind="innerText:name" style="vertical-align: middle; padding: 5px 0px 5px 5px"></h3>
+                    </div>
+                </div>
+                <div id="IdentityProvidersListView"
+                    class="win-selectionstylefilled"
+                    data-win-control="WinJS.UI.ListView"
+                    data-win-options="{ itemDataSource : ACSIdentityProviders.itemList.dataSource,
+                    itemTemplate: select('#mediumListIconTextTemplate'),                   
+                    layout: { type: WinJS.UI.ListLayout }  
+                    }"
+                    style="height: 250px;">
+                </div>
+                <div>
+                    <label id="LblErrorMessage" class="ErrorMessage" style="display: none">An error happened during identity providers request processing, please check network connection, and then try again.</label>
+                </div>
+                <div>
+                    <a href="http://go.microsoft.com/fwlink/?LinkID=190175" target="fix_link_too">View privacy statement</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ENDSETTINGSFLYOUT -->
+</body>
+</html>

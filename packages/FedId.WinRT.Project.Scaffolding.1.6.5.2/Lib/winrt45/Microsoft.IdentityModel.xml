@@ -1,0 +1,452 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.IdentityModel</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.IdentityModel.Claims.Claim">
+            <summary>
+            This class contains claim information.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Claims.Claim.#ctor">
+            <summary>
+            Creates an instance of the Claim class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Claims.Claim.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates an instance of the Claim class.
+            </summary>
+            <param name="issuer">sets Issuer</param>
+            <param name="originalIssuer">sets OriginalIssuer</param>
+            <param name="type">sets claim ClaimType</param>
+            <param name="valueOfClaim">sets Value</param>
+            <param name="valueType">sets ValueType</param>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Claims.Claim.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates an instance of the Claim class.
+            </summary>
+            <param name="issuer">sets Issuer</param>
+            <param name="originalIssuer">sets OriginalIssuer</param>
+            <param name="type">sets claim ClaimType</param>
+            <param name="valueOfClaim">sets Value</param>
+            <param name="valueType">sets ValueType</param>
+            claim.Key, value, ClaimValueTypes.String, issuer
+        </member>
+        <member name="P:Microsoft.IdentityModel.Claims.Claim.Issuer">
+            <summary>
+            Issuer of the claim
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Claims.Claim.OriginalIssuer">
+            <summary>
+            Original Issuer of the claim. This will be different than Issuer if the claim was originally issued by a different sts
+            and has been re-issued.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Claims.Claim.ClaimType">
+            <summary>
+            Type of the claim.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Claims.Claim.Value">
+            <summary>
+            Value of the claim.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Claims.Claim.ValueType">
+            <summary>
+            The type of claim value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Claims.ClaimCollection">
+            <summary>
+            This class contains a collection of Claim objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Claims.ClaimCollection.#ctor">
+            <summary>
+            Creates an instance of a ClaimsCollection object.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Claims.ClaimsIdentity">
+            <summary>
+            This class implements IClaimsIdentity to represent a claims based identity.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Claims.IClaimsIdentity">
+            <summary>
+            Interface implements IIdentity and INotifyPropertyChanged (to allow data binding).
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Claims.ClaimsIdentity.#ctor">
+            <summary>
+            Creates a ClaimsIdentity class with no initialized claims.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Claims.ClaimsIdentity.#ctor(System.Collections.Generic.IEnumerable{Microsoft.IdentityModel.Claims.Claim})">
+            <summary>
+            Creates a ClaimsIdentity class with initialized claim values.
+            </summary>
+            <param name="claims">sets Claims</param>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Claims.ClaimsIdentity.AuthenticationType">
+            <summary>
+            Returns value of claim with type ClaimType.AuthenticationMethod. This is the authentication method used at the STS.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Claims.ClaimsPrincipal">
+            <summary>
+            This class implements IClaimsPrincipal, and represents a claims based security principal.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Claims.IClaimsPrincipal">
+            <summary>
+            Interface implements IPrincipal and INotifyPropertyChanged (to allow data binding).
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Claims.ClaimsPrincipal.#ctor(Microsoft.IdentityModel.Claims.IClaimsIdentity)">
+            <summary>
+            Creates an instance of a ClaimsPrincipal object.
+            </summary>
+            <param name="identity">sets .Identity and .ClaimsIdentity</param>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Claims.ClaimsPrincipal.ClaimsIdentity">
+            <summary>
+            This references the same IClaimsIdentity instance as the Identity field.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Claims.ClaimTypes.CreateFromKey(System.String)">
+            <summary>
+            Creates a ClaimType class based on a key. First looks for a match in ClaimsDictionary, then looks at the list of 
+            claims types that built in to ClaimType class. To look up builtin claim types, the field name of the claim type should be used.
+            </summary>
+            <example>ClaimType.CreateFromKey("Email"); returns ClaimType.Email</example>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Claims.ClaimTypes.ClaimsDictionay">
+            <summary>
+            This field can be used to add name values pairs to the ClaimsDictionary.
+            The name represents a friendly name for a claim type, example as 'Photo', while the value is
+            the claim type uri, example 'http://my.claims/photo'.
+            This dictionary is used when CreateFromKey() is called.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Claims.ClaimTypesEx">
+            <summary>
+            Secure Token Server claim types not included in runtime provided Microsoft.IdentityModel.Claims.ClaimTypes structure.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Tokens.JsonWebToken">
+            <summary>
+            This class represents the token format for the JsonWebToken.
+            </summary>
+            <remarks>Implementation is based on http://msdn.microsoft.com/en-us/library/fp179819(v=office.15).aspx#setup. </remarks>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.JsonWebToken.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.IdentityModel.Tokens.JsonWebToken"/> class.
+            This is internal contructor is only called from the <see cref="!:JsonWebTokenHandler"/> when reading a token received from the wire.
+            </summary>
+            <param name="properties"></param>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.JsonWebToken.#ctor(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.IdentityModel.Tokens.JsonWebToken"/> class.
+            This is internal contructor is only called from the <see cref="!:JsonWebTokenHandler"/> when reading a token received from the wire.
+            </summary>
+            <param name="properties"></param>
+            <param name="serializedToken"></param>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.JsonWebToken.#ctor(System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.IdentityModel.Tokens.JsonWebToken"/> class.
+            This is internal contructor is only called from the <see cref="!:JsonWebTokenHandler"/> when reading a token received from the wire.
+            </summary>
+            <param name="header"></param>
+            <param name="payload"></param>
+            <param name="signature"></param>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.JsonWebToken.FromEncodedToken(System.String)">
+            <summary>
+            Factory for creating JsonWebToken.
+            </summary>
+            <param name="rawToken">The raw serialized token input.</param>
+            <returns>A json web token.</returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.JsonWebToken.IsReservedKeyName(System.String)">
+            <summary>
+            Used to determine whether the parameter claim type is one of the reserved
+            JsonWebToken claim types: Audience, ExpiresOn, Id, Issuer, Signature, etc.
+            </summary>
+            <param name="keyName">The key name to be compared.</param>
+            <returns>True if the key is a reserved key name.</returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.JsonWebToken.IsReservedHeaderKeyName(System.String)">
+            <summary>
+            Used to determine whether the header parameter claim type is one of the reserved
+            JsonWebToken claim types: Audience, ExpiresOn, Id, Issuer, Signature, etc.
+            </summary>
+            <param name="keyName">The key name to be compared.</param>
+            <returns>True if the key is a reserved key name.</returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.JsonWebToken.GetAllProperties">
+            <summary>
+            Creates a copy of all key value pairs of the token.
+            </summary>
+            <returns>A copy of all the key value pairs in the token.</returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.JsonWebToken.GetTimeAsDateTime(System.String)">
+            <summary>
+            Convert the time in seconds to a <see cref="T:System.DateTime"/> object based on the base time 
+            defined by the Json Web Token.
+            </summary>
+            <param name="expiryTime">The time in seconds.</param>
+            <returns>The time as a <see cref="T:System.DateTime"/> object.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.IdentityModel.Tokens.JsonWebToken.ValidateHeaderClaim(System.String,System.String)" -->
+        <member name="M:Microsoft.IdentityModel.Tokens.JsonWebToken.ValidateLifetime">
+            <summary>
+            Two dates are provided in the JWT: "nbf" ("not before") gives the date and time that the token becomes valid, and "exp" 
+            gives the time that the token expires. Only tokens presented between these two dates should be considered valid. To 
+            accommodate minor differences in the clock setting between the server and the client, this method will validate tokens up 
+            to five minutes before and 5 minutes after the times in the token.
+            </summary>
+            <remarks>The validFrom ("nbf") and validTo ("exp") dates are sent as the number of seconds since the Unix epoch, 
+            January 1, 1970. The dates and times are calculated using UTC to avoid any problems with time zone differences between 
+            the Exchange server and the server running the validation code.</remarks>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.JsonWebToken.ToString">
+            <summary>
+            Returns a <typeparamref name="String"/> that represents the current <typeparamref name="SimpleWebToken"/>. 
+            </summary>
+            <returns>A <typeparamref name="String"/> that represents the current <typeparamref name="SimpleWebToken"/>.</returns>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.JsonWebToken.Id">
+            <summary>
+            Gets the Id of the token.
+            </summary>
+            <value>The Id of the token.</value>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.JsonWebToken.Claims">
+            <summary>
+            Gets the Claims contained in the token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.JsonWebToken.ValidFrom">
+            <summary>
+            Gets the time from when the token is valid.
+            </summary>
+            <value>The time from when the token is valid.</value>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.JsonWebToken.ValidTo">
+            <summary>
+            Gets the time when the token expires.
+            </summary>
+            <value>The time upto which the token is valid.</value>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.JsonWebToken.Audience">
+            <summary>
+            Gets the Audience for the token.
+            </summary>
+            <value>The audience of the token.</value>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.JsonWebToken.Issuer">
+            <summary>
+            Gets the Issuer for the token.
+            </summary>
+            <value>The issuer for the token.</value>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.JsonWebToken.Signature">
+            <summary>
+            Gets the signature for the token.
+            </summary>
+            <value>The signature for the token.</value>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.JsonWebToken.SerializedToken">
+            <summary>
+            Gets the serialized form of the token if the token was created from its serialized form by the token handler.
+            </summary>
+            <value>The serialized form of the token.</value>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.JsonWebToken.IsValid">
+            <summary>
+            If the token passes all the validation checks then it is considered to be valid.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Tokens.JsonWebTokenConstants">
+            <summary>
+            Defines the set of constants for the Json Web Token.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Tokens.ErrorCodeType">
+            <summary>
+            Error code options used in AppSpecificException contructor.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Tokens.SecurityTokenException">
+            <summary>
+            AppSpecificException type will be used to throw custom exceptions when cases arise where one of the non-base 
+            class in the box exception types (see .NET Framework Exception Hierarchy) are not specific enough. In those 
+            cases the custom AppSpecificException should be thrown instead.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.SecurityTokenException.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.SecurityTokenException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.SecurityTokenException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.SecurityTokenException.ErrorCode">
+            <summary>
+            Get or set the error code for this exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.SimpleWebToken.FromEncodedToken(System.String)">
+            <summary>
+            Factory constructor - creates a SimpleWebToken by parsing the form-encoded string representation of the token.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.SimpleWebToken.#ctor">
+            <summary>
+            Default constructor, used by the FromString factory method.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.SimpleWebToken.#ctor(System.String,System.String)">
+            <summary>
+            Constructor. Creates a SimpleWebToken with an issuer and audience, and an unlimited
+            life time and no claims.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.SimpleWebToken.Decode(System.String)">
+            <summary>
+            Parses a SWT token string.
+            </summary>
+            <param name="rawToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.SimpleWebToken.IsReservedClaimType(System.String)">
+            <summary>
+            Used to determine whether the parameter claim type is one of the reserved
+            SimpleWebToken claim types: Audience, HMACSHA256, ExpiresOn or Issuer.
+            </summary>
+            <param name="claimType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.SimpleWebToken.CheckForReservedClaimType(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            Enforces casing requirements on reserved claim types. If the claim type is present in any casing, an exception is thrown.
+            </summary>
+            <remarks>
+            This function MUST be called after the reserved claim type has been checked and removed (if present).
+            </remarks>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.SimpleWebToken.DecodeClaims(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Char)">
+            <summary>
+            A=B,C,D should result in the claims A=B, A=C, and A=D.
+            Duplicate values are allowed. Empty strings are not allowed.
+            </summary>
+            <param name="claims"></param>
+            <param name="delimiter"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.SimpleWebToken.Id">
+            <summary>
+            Gets the Id of the token.
+            </summary>
+            <value>The Id of the token.</value>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.SimpleWebToken.Audience">
+            <summary>
+            The Audience for the token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.SimpleWebToken.ExpiresOn">
+            <summary>
+            The expiry datetime for the token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.SimpleWebToken.Issuer">
+            <summary>
+            The issuer of the token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.SimpleWebToken.Signature">
+            <summary>
+            The signature value of the token.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Tokens.TokenProcessor">
+            <summary>
+            Class processes an incoming security token XML using token handlers specified in microsoft.identitymodel config
+            also the class manages signin using a session cookie, as well as sign out.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.TokenProcessor.#ctor">
+            <summary>
+            Creates an instance of the class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.TokenProcessor.GetRawTokenType(System.String)">
+            <summary>
+            Given rstrXml the security token raw token type is returned.
+            </summary>
+            <param name="rstrXml">Xml of request security token response.</param>
+            <returns>Raw token type of the contained security token.</returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.TokenProcessor.GetRawToken(System.String)">
+            <summary>
+            Given rstrXml the security token raw token xml is returned.
+            </summary>
+            <param name="rstrXml">Xml of request security token response.</param>
+            <returns>Raw token xml of the contained security token.</returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Utilities.SecureServiceHelper.CreateClaimsPrincipalFromJwtRawToken(System.String)">
+            <summary>
+            Creates a claims principal using wsfed acs issued jwt raw token.
+            </summary>
+            <param name="rawToken">The serialized json web token to acquire claims from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Utilities.SecureServiceHelper.CreateClaimsPrincipalFromJwt(Microsoft.IdentityModel.Tokens.JsonWebToken)">
+            <summary>
+            Creates a claims principal using wsfed acs issued jwt token.
+            </summary>
+            <param name="jwtToken">The json web token to acquire claims from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Utilities.SecureServiceHelper.CreateClaimsPrincipalFromSwtRawToken(System.String)">
+            <summary>
+            Creates a claims principal using wsfed acs issued swt raw token.
+            </summary>
+            <param name="rawToken">The serialized simple web token to acquire claims from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Utilities.SecureServiceHelper.CreateClaimsPrincipalFromSwt(Microsoft.IdentityModel.Tokens.SimpleWebToken)">
+            <summary>
+            Creates a claims principal using wsfed acs issued swt token.
+            </summary>
+            <param name="swtToken">The simple web token to acquire claims from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Utilities.SecureServiceHelper.CreateClaimsPrincipalFromSaml(System.String)">
+            <summary>
+            Creates a claims principal using wsfed adfs issued saml raw token.
+            </summary>
+            <param name="rawToken"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

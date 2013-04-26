@@ -1,0 +1,1004 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.IT.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.IT.Core.Diagnostics.TraceEventId">
+            <summary>
+            Define project specific eventId values according to whatever your needs are. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.Diagnostics.Log">
+            <summary>
+            Define project specific global for use outputting log instrumentation
+            </summary>    
+            <remarks>For related info see clr Core.Diagnostics.Log implementation remarks.</remarks>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.#cctor">
+            <summary>
+            Initializes a new instance of the Log class. 
+            </summary>
+            <remarks>Explicit static constructor to tell C# compiler not to mark type as beforefieldinit</remarks>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.#ctor">
+            <summary>
+            Initializes a new instance of the Log class. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.GetDiagnosticsInformation">
+            <summary>
+            Gets application and device diagnostics information.
+            </summary>
+            <returns>Application and device diagnostics information.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.GetLibraryAssemblyVersion">
+            <summary>
+            Gets the assembly version information of this library.
+            </summary>
+            <returns>Library assembly version and assembly file version information.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.GetApplicationAssemblyVersion">
+            <summary>
+            Gets the assembly version information of main application assembly.
+            </summary>
+            <returns>Application assembly version and assembly file version information.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.TraceInformation(System.String)">
+            <summary>
+            Writes an informational message to the trace listeners in the Listeners collection using the specified message.
+            </summary>
+            <param name="message">The informative message to write.</param>
+            <remarks>For more information about the format parameter, see Composite Formatting.
+            The TraceInformation method provides an informational message intended to be read by users and not by tools.</remarks>
+            <exception cref="T:System.ObjectDisposedException">An attempt was made to trace an event during finalization.</exception>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.TraceInformation(System.String,System.Object[])">
+            <summary>
+            Writes an informational message to the trace listeners in the Listeners collection using the specified object array and formatting information.
+            </summary>
+            <param name="format">A composite format string (see Remarks) that contains text intermixed with zero or more format items, which correspond to objects in the args array.</param>
+            <param name="args">An array containing zero or more objects to format.</param>
+            <remarks>For more information about the format parameter, see Composite Formatting.
+            The TraceInformation method provides an informational message intended to be read by users and not by tools.</remarks>
+            <exception cref="T:System.ArgumentNullException">format is null.</exception>
+            <exception cref="T:System.FormatException">format is invalid. -or- The number that indicates an argument to format is less than zero, or greater than or equal to the number of specified objects to format.</exception>
+            <exception cref="T:System.ObjectDisposedException">An attempt was made to trace an event during finalization.</exception>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.TraceException(System.Exception,System.String)">
+            <summary>
+            Writes the contents of an exception to application isolated storage log file.
+            </summary>
+            <param name="ex">Exception to be serialized out into log file.</param>
+            <param name="extra">Any addition details to be included in details persisted in log file.</param>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.TraceEvent(Microsoft.IT.Core.Diagnostics.TraceEventType,System.Int32)">
+            <summary>
+            Writes a trace event message to the trace listeners in the Listeners collection using the specified event type and event identifier.
+            </summary>
+            <param name="eventType">One of the enumeration values that specifies the event type of the trace data.</param>
+            <param name="id">A numeric identifier for the event.</param>
+            <exception cref="T:System.ObjectDisposedException">An attempt was made to trace an event during finalization.</exception>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.TraceEvent(Microsoft.IT.Core.Diagnostics.TraceEventType,System.Int32,System.String)">
+            <summary>
+            Writes a trace event message to the trace listeners in the Listeners collection using the specified event type, event identifier, and message.
+            </summary>
+            <param name="eventType">One of the enumeration values that specifies the event type of the trace data.</param>
+            <param name="id">A numeric identifier for the event.</param>
+            <param name="message">The trace message to write.</param>
+            <exception cref="T:System.ObjectDisposedException">An attempt was made to trace an event during finalization.</exception>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.TraceEvent(Microsoft.IT.Core.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+            <summary>
+            Writes a trace event to the trace listeners in the Listeners collection using the specified event type, event identifier, and argument array and format.
+            </summary>
+            <param name="eventType">One of the enumeration values that specifies the event type of the trace data.</param>
+            <param name="id">A numeric identifier for the event.</param>
+            <param name="format">A composite format string (see Remarks) that contains text intermixed with zero or more format items, which correspond to objects in the args array.</param>
+            <param name="args">An array containing zero or more objects to format.</param>
+            <remarks>For more information about the format parameter, see Composite Formatting.
+            The TraceInformation method provides an informational message intended to be read by users and not by tools.</remarks>
+            <exception cref="T:System.ArgumentNullException">format is null.</exception>
+            <exception cref="T:System.FormatException">format is invalid. -or- The number that indicates an argument to format is less than zero, or greater than or equal to the number of specified objects to format.</exception>
+            <exception cref="T:System.ObjectDisposedException">An attempt was made to trace an event during finalization.</exception>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.CheckForLogFileAndAskUserToForward(System.String,System.String)">
+            <summary>
+            Checks application isolated storage for presence of log file and if found prompts user to ask if they would like to forward contents.
+            </summary>
+            <param name="emailAddress">Email address to be used when sending email with contents of log file.</param>
+            <param name="emailSubject">Subject to be used when sending email.</param>
+            <returns>True if log file existed and user accepted prompt to forward it via email, otherwise false.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Diagnostics.Log.DoesFileExistAsync(System.String)">
+            <summary>
+            Check Microsoft.IT.Core.Diagnostics.Log.txt is exists in local folder or not
+            </summary>
+            <param name="fileName">file name</param>
+            <returns>true if exists otherwise false</returns>
+        </member>
+        <member name="P:Microsoft.IT.Core.Diagnostics.Log.Instance">
+            <summary>
+            Returns singleton instance of Log class.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.ErrorCodeType">
+            <summary>
+            Error code options used in AppSpecificException contructor.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.FedIdSignInProtocol">
+            <summary>
+            Federated Identity SignIn Protocol options.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.UriPartial">
+             <summary>
+             Defines the parts of a URI for the System.Uri.GetLeftPart(System.UriPartial) method.
+            </summary>
+        </member>
+        <member name="F:Microsoft.IT.Core.UriPartial.Scheme">
+            <summary>
+            The scheme segment of the URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.IT.Core.UriPartial.Authority">
+            <summary>
+             The scheme and authority segments of the URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.IT.Core.UriPartial.Path">
+            <summary>
+             The scheme, authority, and path segments of the URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.IT.Core.UriPartial.Query">
+            <summary>
+            The scheme, authority, path, and query segments of the URI.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.HttpRequestHeaderEx">
+            <summary>
+            The extended set of HTTP headers that may be specified in a client request.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.AddSoapOperationCookie(System.IDisposable,System.Collections.Generic.KeyValuePair{System.String,System.String})">
+            <summary>
+            Adds a Soap Endpoint Operation Cookie that will be included in subsequent requests.
+            </summary>
+            <param name="clientInnerChannel">Soap client proxy inner channel.</param>
+            <param name="cookie">Cookie to attach to soap client endpoint operation.</param>
+            <remarks>Requires that client proxy binding contains enableHttpCookieContainer="true" attribute setting.</remarks>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.SetSoapOperationCookieContainer(System.IDisposable,System.String)">
+            <summary>
+            Sets a Soap Endpoint Operation Cookie container that will be included in subsequent requests.
+            </summary>
+            <param name="clientInnerChannel">Soap client proxy inner channel.</param>
+            <param name="cookieHeader">Cookie header to attach to soap client endpoint operation.</param>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.IsBaseOf(System.String,System.String)">
+            <summary>
+            Determines whether the current <typeparamref name="Uri"/> instance is a base of the specified <typeparamref name="Uri"/> instance.
+            </summary>
+            <param name="uri">The specified base Uri instance.</param>
+            <param name="uri">The specified Uri instance to test.</param>
+            <returns>true if the current Uri instance is a base of uri; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.GetLeftPart(System.Uri,Microsoft.IT.Core.UriPartial)">
+            <summary>
+             Gets the specified portion of a System.Uri instance.
+            </summary> 
+            <param name="part">One of the System.UriPartial values that specifies the end of the URI portion to return.</param>
+            <remarks>Returns a System.String that contains the specified portion of the System.Uri instance.</remarks>
+            <exception cref="T:System.InvalidOperationException">The current System.Uri instance is not an absolute instance.</exception>
+            <exception cref="T:System.ArgumentException">The specified part is not valid.</exception>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.SendHttpRequestAsync(System.String)">
+            <summary>
+            Send Http Request using default options.
+            </summary>
+            <param name="url">The url that request will be sent to.</param>
+            <returns>Response content a string.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.SendHttpRequestAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            Send Http Request with options.
+            </summary>
+            <param name="httpMethod">The http method type that request will be issued as, e.g. get, post, put, delete.</param>
+            <param name="url">The url that request will be sent to.</param>
+            <param name="contentType">The content type associated with content, if any, to be included in request.</param>
+            <param name="content">The content you want included in body of request.</param>
+            <returns>Response content a string.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.SendHttpRequestAsync(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Send Http Request with options.
+            </summary>
+            <param name="httpMethod">The http method type that request will be issued as, e.g. get, post, put, delete.</param>
+            <param name="url">The url that request will be sent to.</param>
+            <param name="contentType">The content type associated with content, if any, to be included in request.</param>
+            <param name="content">The content you want included in body of request.</param>
+            <param name="cookieHeader">The cookie header settings that need to be included in request, e.g. o365 tenant session token cookies.</param>
+            <returns>Response content a string.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.SendHttpRequestReturnAsByteArrayAsync(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Send Http Request with options.
+            </summary>
+            <param name="httpMethod">The http method type that request will be issued as, e.g. get, post, put, delete.</param>
+            <param name="url">The url that request will be sent to.</param>
+            <param name="contentType">The content type associated with content, if any, to be included in request.</param>
+            <param name="content">The content you want included in body of request.</param>
+            <param name="cookieHeader">The cookie header settings that need to be included in request, e.g. o365 tenant session token cookies.</param>
+            <returns>Response content as byte array -> windows runtime complient IList&lt;byte&gt;.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.SendHttpRequestReturnAsStreamAsync(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Send Http Request with options.
+            </summary>
+            <param name="httpMethod">The http method type that request will be issued as, e.g. get, post, put, delete.</param>
+            <param name="url">The url that request will be sent to.</param>
+            <param name="contentType">The content type associated with content, if any, to be included in request.</param>
+            <param name="content">The content you want included in body of request.</param>
+            <param name="cookieHeader">The cookie header settings that need to be included in request, e.g. o365 tenant session token cookies.</param>
+            <returns>Response content as Stream -> windows runtime complient IDisposable.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.SendHttpRequestAsync(System.String,System.String,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.IT.Core.KeyValuePairStringString})">
+            <summary>
+            Send Http Request with options.
+            </summary>
+            <param name="httpMethod">The http method type that request will be issued as, e.g. get, post, put, delete.</param>
+            <param name="url">The url that request will be sent to.</param>
+            <param name="contentType">The content type associated with content, if any, to be included in request.</param>
+            <param name="content">The content you want included in body of request.</param>
+            <param name="cookieHeader">The cookie header settings that need to be included in request, e.g. o365 tenant session token cookies.</param>
+            <param name="headers">Any other header settings that need to be included in request.</param>
+            <returns>Response content as string.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.SendHttpRequestReturnAsByteArrayAsync(System.String,System.String,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.IT.Core.KeyValuePairStringString})">
+            <summary>
+            Send Http Request with options.
+            </summary>
+            <param name="httpMethod">The http method type that request will be issued as, e.g. get, post, put, delete.</param>
+            <param name="url">The url that request will be sent to.</param>
+            <param name="contentType">The content type associated with content, if any, to be included in request.</param>
+            <param name="content">The content you want included in body of request.</param>
+            <param name="cookieHeader">The cookie header settings that need to be included in request, e.g. o365 tenant session token cookies.</param>
+            <param name="headers">Any other header settings that need to be included in request.</param>
+            <returns>Response content as byte array -> windows runtime complient IList&lt;byte&gt;.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.SendHttpRequestReturnAsStreamAsync(System.String,System.String,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.IT.Core.KeyValuePairStringString})">
+            <summary>
+            Send Http Request with options.
+            </summary>
+            <param name="httpMethod">The http method type that request will be issued as, e.g. get, post, put, delete.</param>
+            <param name="url">The url that request will be sent to.</param>
+            <param name="contentType">The content type associated with content, if any, to be included in request.</param>
+            <param name="content">The content you want included in body of request.</param>
+            <param name="cookieHeader">The cookie header settings that need to be included in request, e.g. o365 tenant session token cookies.</param>
+            <param name="headers">Any other header settings that need to be included in request.</param>
+            <returns>Response content as Stream -> windows runtime complient IDisposable.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.JsonArrayDeserialize``1(System.String)">
+            <summary>
+            Deserializes a json string value containing array into enumerable.
+            </summary>
+            <typeparam name="T">Type to deserialize array into.</typeparam>
+            <param name="jsonString">The json string value to deserialize.</param>
+            <returns>Enumerable instances of types created from deserialized json string.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.JsonDeserialize``1(System.String)">
+            <summary>
+            Deserializes a json string value containing object into type.
+            </summary>
+            <typeparam name="T">Type to deserialize object into.</typeparam>
+            <param name="jsonString">The json string value to deserialize.</param>
+            <returns>Instance of type created from deserialized json string.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.JsonSerialize(System.Object)">
+            <summary>
+            Serializes object to json string value.
+            </summary>
+            <param name="objectToSerialize">The object to serialize.</param>
+            <returns>The json string value serialization of object.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.IsInternetAccessPresent">
+            <summary>
+            Determines if app is running in environment where internet access is present.
+            </summary>
+            <returns>True if internet access is present and false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.IsDomainJoinedAsync">
+            <summary>
+            Determines if app is running on domain joined host, which also implies win8 x64/x86 vs winrt arm install
+            </summary>
+            <returns>True if running on domain joined host and false otherwise.</returns>
+            <remarks>A false result will be returned in the case of a domain joined host where settings | pc settings | privacy | 
+            let apps access my name, picture, and other domain account info = off.</remarks>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.IsRunningOnX64orX86">
+            <summary>
+            Determines if app is running on x64 or x86 platform.
+            </summary>
+            <returns>True if running on x64 or x86 platform and false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.GetProcessorArchitecture">
+            <summary>
+            Determines if app is running in environment where internet access is present.
+            </summary>
+            <returns>True if internet access is present and false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.CheckFileExists(System.String)">
+            <summary>
+            Checks to see if file exists in local app data store, possibly one put there by CreateDownloadAsync calls.
+            </summary>
+            <param name="fileName">The file name to check for in local app data store.</param>
+            <returns>True if <paramref name="fileName"/> exists and False otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.CreateDownloadAsync(System.String,System.String)">
+             <summary>
+             Retrieves file, including those that require fedid security to access, and cache in local app data store for use by view markup.
+             </summary>
+             <param name="url">The url of image to retrieve.</param>
+             <param name="fileName">The file name to use when caching downloaded file in local app data store.</param>
+             <returns>True if success False otherwise.</returns>
+            <remarks>The winrt includes a BackgroundDownloader.CreateDownloadAsync <see cref="!:http://msdn.microsoft.com/en-us/library/windows/apps/windows.networking.backgroundtransfer.backgrounddownloader"/> 
+             implementation that is intended to cover long-term operations for resources like video, music, and large images. This api is 
+             intended to cover short-term operations involving transfers of smaller resources using the recommended HttpClient to carry those 
+             out. Access results from view markup using src="ms-appdata:///local/&lt;fileName&gt;"</remarks>
+             <seealso cref="!:http://msdn.microsoft.com/en-us/library/windows/apps/windows.storage.applicationdata.localfolder.aspx"/>
+             <seealso cref="!:http://msdn.microsoft.com/en-us/library/windows/apps/windows.storage.applicationdata.temporaryfolder.aspx"/>
+        </member>
+        <member name="M:Microsoft.IT.Core.Extensions.CreateDownloadAsync(System.String,Microsoft.IT.Core.Security.FedIdSecurityToken,System.String)">
+             <summary>
+             Retrieves file, including those that require fedid security to access, and cache in local app data store for use by view markup.
+             </summary>
+             <param name="url">The url of image to retrieve.</param>
+             <param name="securityToken">The federated identity security token to use for securing the call, pass null if not required.</param>
+             <param name="fileName">The file name to use when caching downloaded file in local app data store.</param>
+             <returns>True if success False otherwise.</returns>
+            <remarks>The winrt includes a BackgroundDownloader.CreateDownloadAsync <see cref="!:http://msdn.microsoft.com/en-us/library/windows/apps/windows.networking.backgroundtransfer.backgrounddownloader"/> 
+             implementation that is intended to cover long-term operations for resources like video, music, and large images. This api is 
+             intended to cover short-term operations involving transfers of smaller resources using the recommended HttpClient to carry those 
+             out. Access results from view markup using src="ms-appdata:///local/&lt;fileName&gt;"</remarks>
+             <seealso cref="!:http://msdn.microsoft.com/en-us/library/windows/apps/windows.storage.applicationdata.localfolder.aspx"/>
+             <seealso cref="!:http://msdn.microsoft.com/en-us/library/windows/apps/windows.storage.applicationdata.temporaryfolder.aspx"/>
+        </member>
+        <member name="T:Microsoft.IT.Core.KeyValuePairStringString">
+            <summary>
+            Defines a key/value pair that can be set or retrieved.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IT.Core.KeyValuePairStringString.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the KeyValuePairStringString structure with the specified key and value.
+            </summary>
+            <param name="key">The object defined in each key/value pair.</param>
+            <param name="keyValue">The definition associated with key.</param>
+        </member>
+        <member name="P:Microsoft.IT.Core.KeyValuePairStringString.Key">
+            <summary>
+            Gets the key in the key/value pair. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.KeyValuePairStringString.Value">
+            <summary>
+            Gets the value in the key/value pair. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.Resources.Constant">
+            <summary>
+            Numeric and String constant values.
+            </summary>
+            <remarks>String constants that may require localization should be placed in Localized.resx</remarks>
+        </member>
+        <member name="F:Microsoft.IT.Core.Resources.Constant.DateTimeUniversalFormatPattern">
+            <summary>Custom format patterns for date time to string conversions</summary>
+            <remarks>For more info see http://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx .</remarks>
+        </member>
+        <member name="F:Microsoft.IT.Core.Resources.Constant.GuidRegExPattern">
+            <summary>Guid regular expression</summary>
+            <remarks>Supports matching 32 hexadecimal numbers with dash separator at positions 8, 12, 16 and 20
+            e.g. xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.  Prefix and suffix with ^ and $ respectively to match
+            strings only containing guid.  Prefix and suffix with {? and }? to optionally match strings with
+            guid decorated in braces, e.g. {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}</remarks>
+        </member>
+        <member name="F:Microsoft.IT.Core.Resources.Constant.ContentTypeAny">
+            <summary>
+            Constants for Http Content-Type Header
+            </summary>
+        </member>
+        <member name="F:Microsoft.IT.Core.Resources.Constant.WrapScope">
+            <summary>
+            Constants from WRAP 0.0 draft v0-09 - http://www.ietf.org/internet-drafts/draft-ietf-wrap-v0-09.txt
+            </summary>
+        </member>
+        <member name="F:Microsoft.IT.Core.Resources.Constant.OAuthScope">
+            <summary>
+            Constants from OAuth 2.0 draft v2-13 - http://www.ietf.org/internet-drafts/draft-ietf-oauth-v2-13.txt
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.Resources.Localized">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.AcsIdentityProvidersRequestError">
+            <summary>
+              Looks up a localized string similar to An error happened during identity providers request processing, please check network connection, and then try again..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.AcsWrapTokenAssertionFormatError">
+            <summary>
+              Looks up a localized string similar to The provided acs wrap token assertion format is unknown..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.AcsWrapTokenExtractionError">
+            <summary>
+              Looks up a localized string similar to An error happened during acs wrap issued token extraction..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.FedIdSecurityTokenDetailsError">
+            <summary>
+              Looks up a localized string similar to Failed to acquire required federated identity security token details..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.FedIdSecurtiyTokenReturnsDefaultValueFromOAuthAcs">
+            <summary>
+              Looks up a localized string similar to Error occurred while returning security token from contents of oauth acs request security response. It returned default security token instead of valid security token..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.FedIdSecurtiyTokenReturnsDefaultValueFromWrapAcs">
+            <summary>
+              Looks up a localized string similar to Error occurred while returning security token from contents of wrap acs request security response. It returned default security token instead of valid security token..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.NullHttpCookieContainerManagerStringFormat">
+            <summary>
+              Looks up a localized string similar to {0} found a null Soap Endpoint Operation CookieContainer. Check that binding contains enableHttpCookieContainer=\&quot;true\&quot; attribute setting..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.ParameterContainsUnsupportedValue">
+            <summary>
+              Looks up a localized string similar to The parameter {0} contains an unsupported value..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.ParameterIsNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to The parameter {0} is null or empty..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.SignInProcessingError">
+            <summary>
+              Looks up a localized string similar to An error happened during signin process, please check network connection, and then try signin again..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.SignOutProcessingError">
+            <summary>
+              Looks up a localized string similar to An error happened during signout process, please check network connection, and then try signout again..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.WabSignInErrorHttp">
+            <summary>
+              Looks up a localized string similar to The Web Authentication Broker SignIn process generated a Http Error..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.WabSignInUserCancel">
+            <summary>
+              Looks up a localized string similar to The Web Authentication Broker SignIn process was cancelled by the user..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.WabSignOutErrorHttp">
+            <summary>
+              Looks up a localized string similar to The Web Authentication Broker SignOut process generated a Http Error..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.WabSignOutUserCancel">
+            <summary>
+              Looks up a localized string similar to The Web Authentication Broker SignOut process was cancelled by the user..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.SignInUrlError">
+            <summary>
+              Looks up a localized string similar to An error happened during signin process, please provide sign-in url, and then try signin again..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.WSTrustInvalidCredentials">
+            <summary>
+              Looks up a localized string similar to An error happened during signin process, please provide valid username and password, and then try signin again..
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Resources.Localized.NetworkConnectionError">
+            <summary>
+              Looks up a localized string similar to A network error occurred during the signin process. Please make sure your machine has internet connection and try signin again..
+            </summary>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.IsSecurityTokenValid">
+            <summary>
+            Checks if currently holding a valid federated identity security token.
+            </summary>
+            <returns>Returns true if currently holding a valid federated identity security token and otherwise returns false.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.IsSecurityTokenRawTokenSbValid">
+            <summary>
+            Checks if currently holding a valid federated identity security token.
+            </summary>
+            <returns>Returns true if currently holding a valid federated identity security token and otherwise returns false.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.SetWsTrustCredentials(System.String,System.String,System.Boolean)">
+            <summary>
+            Sets credential vault managed WsTrust signin leveraged username, password credentials and kmsi property.
+            </summary>
+            <returns>Returns true if currently holding a valid federated identity security token and otherwise returns false.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.IT.Core.Security.FedId.SignInAsync(System.String)" -->
+        <member name="M:Microsoft.IT.Core.Security.FedId.SignInAsync(System.String,System.String)">
+            <summary>
+            Execute Federated Identity WsTrust SignIn.
+            </summary>
+            <param name="url">WsTrust SignIn secure token server url</param>
+            <param name="appliesToUrl">WsTrust SignIn applies to url</param>
+            <remarks>Executes SignIn using WsTrust protocol and an identity provider as well as relying party sts.</remarks>
+            <example>SignInAsync("https://login.microsoftonline.com/extSTS.srf", "https://mysubscription.sharepoint.com/")</example>
+            <example>SignInAsync("https://login.microsoftonline.com/extSTS.srf", "https://mysubscription.crm.dynamics.com/")</example>
+            <example>SignInAsync("https://myadfs.mycompany.com/adfs/services/trust/13/usernamemixed", "https://myhostedservice.cloudapp.net/")</example>
+            <example>SignInAsync("https://mynamespace.accesscontrol.windows.net/WRAPv0.9/", "https://myhostedservice.cloudapp.net/")</example>
+            <example>SignInAsync("https://mynamespace-sb.accesscontrol.windows.net/WRAPv0.9/", "http://mynamepace.servicebus.windows.net/")</example>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.SignInAsync(System.String,System.String,System.String)">
+            <summary>
+            Execute Federated Identity WsTrust SignIn.
+            </summary>
+            <param name="url">WsTrust SignIn identity provider secure token server url</param>
+            <param name="rpStsUrl">WsTrust SignIn relying party secure token server url</param>
+            <param name="appliesToUrl">WsTrust SignIn applies to url</param>
+            <remarks>Executes SignIn using WsTrust protocol and an identity provider as well as relying party sts.</remarks>
+            <example>SignInAsync("https://myadfs.mycompany.com/adfs/services/trust/13/usernamemixed", "https://login.microsoftonline.com/extSTS.srf", "https://mysubscription.sharepoint.com/")</example>
+            <example>SignInAsync("https://myadfs.mycompany.com/adfs/services/trust/13/usernamemixed", "https://login.microsoftonline.com/extSTS.srf", "https://mysubscription.crm.dynamics.com/")</example>
+            <example>SignInAsync("https://myadfs.mycompany.com/adfs/services/trust/13/usernamemixed", "https://mynamespace.accesscontrol.windows.net/WRAPv0.9/", "https://myhostedservice.cloudapp.net/")</example>
+            <example>SignInAsync("https://myadfs.mycompany.com/adfs/services/trust/13/usernamemixed", "https://mynamespace-sb.accesscontrol.windows.net/WRAPv0.9/", "http://mynamepace.servicebus.windows.net/")</example>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.SignInAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            Execute Federated Identity WsTrust SignIn.
+            </summary>
+            <param name="url">WsTrust SignIn identity provider secure token server url</param>
+            <param name="rpStsUrl">WsTrust SignIn relying party secure token server url</param>
+            <param name="rpStsLastUrl">WsTrust SignIn relying party secure token server last url</param>
+            <param name="appliesToUrl">WsTrust SignIn applies to url</param>
+            <remarks>Executes SignIn using WsTrust protocol and an identity provider as well as two relying party sts environments.</remarks>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.SignOutAsync">
+            <summary>
+            Execute Federated Identity SignOut.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.SignOutAsync(System.String)">
+            <summary>
+            Execute Federated Identity SignOut.
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.GetSpoCanaryHeaderAsync">
+            <summary>
+            Acquires o365 sharepoint online canary header necessary for create, update and delete write operations used to protected
+            against cross site scripting attacks.
+            </summary>
+            <returns>An o365 spo api context info canary header key value pair.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.GetSpoCanaryHeaderAsync(System.String)">
+            <summary>
+            Acquires o365 sharepoint online canary header necessary for create, update and delete write operations used to protected
+            against cross site scripting attacks.
+            </summary>
+            <param name="url">The o365 spo site url.</param>
+            <returns>An o365 spo api context info canary header key value pair.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.GetSpoCanaryHeaderAsync(System.String,System.String)">
+            <summary>
+            Acquires o365 sharepoint online canary header necessary for create, update and delete write operations used to protected
+            against cross site scripting attacks.
+            </summary>
+            <param name="url">The o365 spo site url.</param>
+            <param name="sessionCookieHeader">The o365 spo site session cookie header acquired from signin process.</param>
+            <returns>An o365 spo api context info canary header key value pair.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.GetVaultResource">
+            <summary>
+            Gets the credential / password value resource value used by FedId services.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.ShowDialog(System.String,System.Boolean)">
+            <summary>
+            Shows model pop up with error message
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedId.CommandHandler(Windows.UI.Popups.IUICommand)">
+            <summary>
+            Shows credential flyout on cancel click
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedId.Instance">
+            <summary>
+            Returns singleton instance of FedId class.
+            </summary>
+        </member>
+        <member name="E:Microsoft.IT.Core.Security.FedId.ShowSettingsFlyout">
+            <summary>
+            Occurs when federated identity signin has to signal to main app that a provided settings flyout UI needs to be rendered
+            in order to collect user input that is not allowed by design from within windows runtime component.
+            </summary>
+            <remarks>Used by orgId and orgId/adfs signins and acs signins where more than one idp has been configured.</remarks>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedId.SignInSettings">
+            <summary>
+            The details of the Federated Identity SignIn requested by main application.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedId.AcsIdpSelection">
+            <summary>
+            The previously selected acs identity provider.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedId.SecurityToken">
+            <summary>
+            The Federated Identity Security Token value that was captured from the Federated Identity SignIn response.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.Security.FedIdEvents">
+             <summary>
+             will use this to enable signal app host from component library that it should launch nuget package deployed UI 
+             </summary>
+             <remarks>
+             for more details see http://msdn.microsoft.com/en-us/library/windows/apps/hh779077.aspx#DeclaringEvents
+             </remarks>
+             <example>
+            var ev;
+            function events1() {
+                ev = new SampleComponent.Eventful();
+                ev.addEventListener("test", function (e) {
+                    document.getElementById('output').innerHTML = e.value1;
+                    document.getElementById('output').innerHTML += "<br/>" + e.value2;
+                });
+                ev.onTest("Number of feet in a mile:", 5280);
+            }
+            </example>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedIdEvents.OnCollectCredentials(System.String,System.String)">
+            <summary>
+            Collect credentials event handler function.
+            </summary>
+            <param name="username">username value</param>
+            <param name="password">password value</param>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedIdSecurityToken.FromJsonWebToken(Microsoft.IT.Core.Security.FedId,System.String)">
+            <summary>
+            Returns security token from contents of json web token.
+            </summary>
+            <param name="simpleWebToken">The acs or adfs returned json web token token.</param>
+            <returns>A valid security token or default security token if an error occurred.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedIdSecurityToken.FromSimpleWebToken(Microsoft.IT.Core.Security.FedId,System.String)">
+            <summary>
+            Returns security token from contents of simple web token.
+            </summary>
+            <param name="simpleWebToken">The acs or adfs returned simple web token token.</param>
+            <returns>A valid security token or default security token if an error occurred.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedIdSecurityToken.FromJsonWebToken(System.String)">
+            <summary>
+            Returns security token from contents of json web token.
+            </summary>
+            <param name="simpleWebToken">The acs or adfs returned json web token token.</param>
+            <returns>A valid security token or default security token if an error occurred.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedIdSecurityToken.FromSimpleWebToken(System.String)">
+            <summary>
+            Returns security token from contents of simple web token.
+            </summary>
+            <param name="simpleWebToken">The acs or adfs returned simple web token token.</param>
+            <returns>A valid security token or default security token if an error occurred.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedIdSecurityToken.FromWsTrustResponse(System.String)">
+            <summary>
+            Returns security token from contents of WsTrust response xml.
+            </summary>
+            <param name="wsTrustSoapResponseXml">WsTrust response payload acquired directly from http client request/response.</param>
+            <returns>A valid security token or exception if an error occurred.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedIdSecurityToken.FromWrapAcs(System.String)">
+            <summary>
+            Returns security token from contents of Wrap Acs request security response.
+            </summary>
+            <param name="accessToken">The OAuth Acs endpoint returned access token.</param>
+            <returns>A valid security token or default security token if an error occurred.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedIdSecurityToken.FromWsFedSessionCookies(System.Net.CookieCollection)">
+            <summary>
+            Returns security token using what was captured in wsfed form post and completion response containing session token cookies.
+            </summary>
+            <param name="cookies">The current WsFed SignIn WebBrowser control GetCookies collection.</param>
+            <returns>A valid security token or default security token if an error occurred.</returns>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.SignInProtocol">
+            <summary>
+            The federated identity security protocol that was used for signin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.RawToken">
+            <summary>
+            The raw token value of the security token contained in the federated identity response.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.RawTokenSb">
+            <summary>
+            The raw token value of the service bus security token contained in the federated identity response.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.RawTokenType">
+            <summary>
+            The raw token type of the security token contained in the federated identity response.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.Created">
+            <summary>
+            The federated identity sts issued security token validFrom value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.CreatedSb">
+            <summary>
+            The federated identity sts issued servic bus security token validFrom value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.Expires">
+            <summary>
+            The federated identity sts issued security token validTo value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.ExpiresSb">
+            <summary>
+            The federated identity sts issued service bus security token validTo value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.SessionCookieHeader">
+            <summary>
+            The contents of an HTTP set-cookie header as returned by a HTTP server, with ws-federation response Cookie instances delimited by commas.
+            </summary>
+            <remarks>Using CookieCollection for type generates serialization exception "Type 'System.Net.Cookie' with data contract name 'Cookie:http://schemas.datacontract.org/2004/07/System.Net' is not expected. Consider using a DataContractResolver or add any types not known statically to the list of known types - for example, by using the KnownTypeAttribute attribute or by adding them to the list of known types passed to DataContractSerializer."
+            so based on details in search hit http://blogs.msdn.com/b/youssefm/archive/2009/04/21/understanding-known-types.aspx tried switching this to known 
+            type System.Collections.Specialized.NamedValueCollection which doesn't currently have a slmobile implementation so switched to string using comma
+            delimited name=value pairs so it can be used without need for CookieHeader.Replace(';', ',') when assigning to requests using SetCookies api.</remarks>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.SpoCanary">
+            <summary>
+            The contents of an o365 sharepoint canary returned by a spo site /_api/contextinfo/ request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.SessionCreated">
+            <summary>
+            The federated identity rp issued session token validFrom value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.SessionExpires">
+            <summary>
+            The federated identity rp issued session token validTo value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.SessionHalfLifetime">
+            <summary>
+            The federated identity rp issued session token half lifetime value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.SessionMaximumClockSkew">
+            <summary>
+            The federated identity rp issued session token maximum clock skew.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSecurityToken.Claims">
+            <summary>
+            The federated identity sts issued security claims.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.Security.O365SharepointCanary">
+            <summary>
+            O365 Sharepoint Online Canary Object used for Create, Update and Delete requests.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.Security.FedIdSignInSettings">
+            <summary>
+            Used to maintain federated identity sign in settings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.FedIdSignInSettings.#ctor">
+            <summary>
+            Constructor (default)
+            </summary>
+            <remarks>Need this defined so that couple string properties accessed via wrc interface can be initialized as non-null values.</remarks>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.Url">
+            <summary>
+            WsFed SignIn url, e.g. o365 team site url or azure hosted service url or azure acs namespace identity providers url or
+            WsTrust secure token server url.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.SignOutUrl">
+            <summary>
+            WsFed SignOut url, e.g. identity provider or relying party SignOut url.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.RpStsUrl">
+            <summary>
+            WsTrust SignIn relying party sts applies to url.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.RpStsLastUrl">
+            <summary>
+            WsTrust SignIn relying party last sts applies to url.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.AppliesToUrl">
+            <summary>
+            WsTrust SignIn applies to url.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.WsTrustUsername">
+            <summary>
+            WsTrust SignIn Username.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.WsTrustPassword">
+            <summary>
+            WsTrust SignIn Password.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.WsTrustKmsi">
+            <summary>
+            WsTrust SignIn Keep me signed in enabled (default) or disabled.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.SignInProtocol">
+            <summary>
+            Federated Identity SignIn Protocol options.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.SessionTokenExpiration">
+            <summary>
+            The relying party configured session token expiration window.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.AcsNamespaceIdps">
+            <summary>
+            acs namespace defined identity providers
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.AcsIdentityProviderUrl">
+            <summary>
+            The azure acs selected identity provider signin url. Multiple identity providers can be configured for azure acs namespace.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSignInSettings.AcsIdentityProviderSignOutUrl">
+            <summary>
+            The azure acs selected identity provider signout url. Multiple identity providers can be configured for azure acs namespace.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.Security.FlyoutAction">
+            <summary>
+            Choices for main app hosted Settings Flyout actions.
+            </summary>
+        </member>
+        <member name="F:Microsoft.IT.Core.Security.FlyoutAction.GetIdpCredentials">
+            <summary>
+            get identity provider credentials
+            </summary>
+        </member>
+        <member name="F:Microsoft.IT.Core.Security.FlyoutAction.GetIdpSelection">
+            <summary>
+            get identity provider from list of acs namespace provided idps
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.Security.FedIdSettingsFlyoutEventArgs">
+            <summary>
+            Provides data for the SignInWsTrust, SignWsFed and SignInWsFedAcs user control Completed events.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.FedIdSettingsFlyoutEventArgs.FlyoutAction">
+            <summary>
+            flyout action to execute
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.Security.SignInWsFedAcsIdp">
+            <summary>
+            DataContract for Azure Acs Identity Provider Discover Service returned data.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IT.Core.Security.SignInWsFedAcsIdp.LoadImageFromImageUrl">
+            <summary>
+            Retrieves the image from ImageUrl.
+            </summary>
+            <returns>The image from the url as a BitmapImage</returns>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.SignInWsFedAcsIdp.Name">
+            <summary>
+            The display name for the identity provider.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.SignInWsFedAcsIdp.LoginUrl">
+            <summary>
+            The url used for Login to the identity provider.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.SignInWsFedAcsIdp.LogoutUrl">
+            <summary>
+            The url used for Logout from the identity provider.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.SignInWsFedAcsIdp.ImageUrl">
+            <summary>
+            The url that is used to retrieve the image for the identity provider.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.SignInWsFedAcsIdp.EmailAddressSuffixes">
+            <summary>
+            A list of email address suffixes configured for the identity provider.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IT.Core.Security.SignInWsFedAcsIdp.Image">
+            <summary>
+            The image populated by calling LoadImageFromImageUrl.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IT.Core.Services.ServiceBusAuthorizationSoapHeader">
+            <summary>
+            This is the VERY SPECIAL (SOAP header) format that Service Bus requires in order to access the Acs issued swt token in the message.
+            This header will be stripped out by Service Bus and thus will not exist when the message gets to the service.
+            </summary>
+            <remarks>
+            Leave all these hard-coded values alone, Service Bus is expecting a very particular format for this header.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.IT.Core.Services.UrlToImageConverter">
+            <summary>
+            Binding converter that takes image markup url value and downloads image, requiring federated identity secured call, and then
+            converts binding to reference in memory stream object -> application storage cached image.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IT.Core.Services.UrlToImageConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="language">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="M:Microsoft.IT.Core.Services.UrlToImageConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="language">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+    </members>
+</doc>
