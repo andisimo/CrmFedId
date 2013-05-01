@@ -1,27 +1,14 @@
 ﻿using Callisto.Controls;
-using CrmFedId.CrmContext;
 using CrmFedId.Security;
 using Microsoft.IT.Core.Diagnostics;
 using Microsoft.IT.Core.Security;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.Services.Client;
-using System.IO;
-using System.Linq;
-using System.Net;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -48,6 +35,9 @@ namespace CrmFedId
         /// session.  This will be null the first time a page is visited.</param>
         protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            // Subscribe to the event that fires to display the IdpCredentialsFlyout.
+            // This code will make sure it displays properly. 
+            // Use this snippet to generate the code: wrtFedIdSettingsFlyout
             FedId.Instance.ShowSettingsFlyout += (sender1, e1) =>
             {
                 if (e1.FlyoutAction == FlyoutAction.GetIdpCredentials)
@@ -67,13 +57,17 @@ namespace CrmFedId
                     Log.Instance.TraceInformation("idp selection flyout being displayed");
                 }
             };
-            // TODO: Refactor this
+            
+            // Subscribe to the TokenReceived event on the ViewModel
+            // Need to know this is accomplished before Loading Contacts
+            App.ContactsNotesVM.TokenReceived += () =>
+            {
+                App.ContactsNotesVM.LoadContactsAsync();
+            };
 
-            App.ContactsNotesVM.TokenReceived += async () =>
-                {
-                    App.ContactsNotesVM.LoadContactsAsync();
-                };
-
+            // Subscribe to ViewModel's Loaded event, then navigate to 
+            // page showing Contacts. Better approach: use observable 
+            // properties and just navigate right away. 
             App.ContactsNotesVM.Loaded += async () =>
             {
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -82,13 +76,14 @@ namespace CrmFedId
                 });
             };
 
+            // Check to see if we have a valid security token. If not, sign in. 
             if (!FedId.Instance.IsSecurityTokenValid())
             {
-                var result = await FedId.Instance.SignInAsync("https://myxrm.crm.dynamics.com/");
+                var result = await FedId.Instance.SignInAsync("https://psecdemo.crm.dynamics.com/");
             }
             else
             {
-                App.ContactsNotesVM.LoadContactsAsync();
+                App.ContactsNotesVM.HaveToken();
             }
         }
 
@@ -100,11 +95,6 @@ namespace CrmFedId
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-        }
-
-        private void Item_Click(object sender, ItemClickEventArgs e)
-        {
-
         }
     }
 }

@@ -62,6 +62,7 @@ namespace CrmFedId.Security
 
                 if (result == true)
                 {
+                    //The HaveToken method fires the TokenReceived event on our viewmodel
                     App.ContactsNotesVM.HaveToken();
                     
 #if DEBUG
