@@ -1,4 +1,4 @@
-﻿using CrmFedId.CrmContext;
+﻿using CrmFedId.OdataReference;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;

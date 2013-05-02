@@ -38,7 +38,7 @@ namespace CrmFedId
             // Subscribe to the event that fires to display the IdpCredentialsFlyout.
             // This code will make sure it displays properly. 
             // Use this snippet to generate the code: wrtFedIdSettingsFlyout
-            FedId.Instance.ShowSettingsFlyout += (sender1, e1) =>
+            FedId.Instance.ShowSettingsFlyout += (sender1, e1) => 
             {
                 if (e1.FlyoutAction == FlyoutAction.GetIdpCredentials)
                 {

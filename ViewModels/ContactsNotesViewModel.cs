@@ -1,4 +1,4 @@
-﻿using CrmFedId.CrmContext;
+﻿using CrmFedId.OdataReference;
 using Microsoft.IT.Core.Security;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,6 @@ namespace CrmFedId.ViewModels
     {
         //private fields
         private ObservableCollection<Contact> _contacts = new ObservableCollection<Contact>();
-        private List<string> _accounts = new List<string>();
         private bool _isDataLoaded = false;
         private psecdemoContext _ctx;
 
@@ -25,12 +24,6 @@ namespace CrmFedId.ViewModels
         {
             get { return _contacts; }
             set { _contacts = value; }
-        }
-
-        public List<string> Accounts
-        {
-            get { return _accounts; }
-            set { _accounts = value; }
         }
   
         public bool IsDataLoaded
